@@ -1,10 +1,9 @@
-var express = require('express');
-var router = express.Router();
-const { createUser, getUser } = require('../controllers/auth/AuthCtrl')
+var router = require('express').Router();
+const passport = require("passport");
+var { authenticate, getUser } = require('../controllers/auth/authCtrl')
 
-/* GET users listing. */
-router.get('/', getUser)
+router.post('/', authenticate)
 
-router.post('/', createUser)
+router.get('/', passport.authenticate('jwt', { session: false }), getUser)
 
 module.exports = router;

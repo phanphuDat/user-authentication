@@ -1,45 +1,17 @@
 import "./App.css";
-import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 function App() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const createUser = () => {
-    console.log(name)
-    console.log(email)
-    console.log(password)
-  }
-
   return (
-    <div className="App">
-      <h1> Register </h1>
-      <form onSubmit={createUser}>
-        <input
-          type="text"
-          value={name}
-          placeholder="username"
-          onChange={(e) => setName(e.target.value)}
-        />
-        <br />
-        <input
-          type="text"
-          value={email}
-          placeholder="email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <br />
-
-        <input
-          type="password"
-          value={password}
-          placeholder="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <br />
-        <input type="submit" value='register' onClick={createUser}/>
-      </form>
+    <div  className="App">
+      <Router>
+        <Routes>
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
